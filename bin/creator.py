@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 
 
-SOURCE = '../media/IMG_20191023_065955.jpg'
+SOURCE = '../media/IMG_20191029_064400.jpg'
 CHAR_MATRIX = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"  # len = 65
 
 
@@ -48,10 +48,14 @@ def convert_to_brightness(pix_array: List[List]):
     return brightness
 
 
+
+
 def make_pic(bri_array: list):
+    f = open('new.txt', 'w')
     char_list = [list(map(lambda x: 2 * CHAR_MATRIX[x-1], i)) for i in bri_array]
     for i in char_list:
-        print(''.join(i))
+        # print(''.join(i))
+        f.write(''.join(i) + '\n')
 
 
 img = load_image()
@@ -59,3 +63,4 @@ img = resize_image(img, 560)
 pixels = pixel_extractor(img)
 brig = convert_to_brightness(pixels)
 make_pic(brig)
+
